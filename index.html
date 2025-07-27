@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adega Carleto - Drinks em Copões</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Reset e Estilos Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            background-color: #f9f5f0;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Cores */
+        :root {
+            --marrom: #8B4513;
+            --marrom-claro: #A0522D;
+            --preto: #000000;
+            --branco: #FFFFFF;
+            --destaque: #e6a756;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--marrom);
+            color: var(--branco);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--branco);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 40px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--destaque);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--preto);
+            color: var(--branco);
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--marrom-claro);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('logo.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--branco);
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        /* Menu Section */
+        .menu {
+            padding: 80px 0;
+            background-color: var(--branco);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--marrom);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--marrom);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .drinks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .drink-card {
+            background-color: var(--branco);
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .drink-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .drink-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .drink-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .drink-card:hover .drink-img img {
+            transform: scale(1.1);
+        }
+        
+        .drink-info {
+            padding: 20px;
+        }
+        
+        .drink-info h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: var(--marrom);
+        }
+        
+        .drink-info p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--marrom);
+        }
+        
+        .add-to-cart-btn {
+            background-color: var(--marrom);
+            color: var(--branco);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart-btn:hover {
+            background-color: var(--marrom-claro);
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 36px;
+            color: var(--marrom);
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--marrom);
+            color: var(--branco);
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--destaque);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: var(--branco);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--destaque);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--branco);
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--destaque);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+        }
+
+        /* Botões Flutuantes de Redes Sociais */
+        .social-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.25);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--branco);
+            transition: transform 0.3s ease;
+        }
+
+        .social-float:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float {
+            right: 40px;
+            background-color: #25D366; /* Verde do WhatsApp */
+        }
+
+        .instagram-float {
+            right: 40px;
+            bottom: 115px; /* Posição acima do botão do WhatsApp (40px + 60px + 15px de espaço) */
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); /* Gradiente do Instagram */
+        }
+
+        /* Ícone do Carrinho no Header */
+        .cart-icon-container {
+            position: fixed; /* Fixo na tela */
+            top: 90px;      /* Distância do topo ajustada */
+            right: 40px;     /* Distância da direita ajustada */
+            z-index: 999;    /* Garante que fique acima do conteúdo, mas abaixo do modal */
+            background-color: var(--marrom);
+            border-radius: 50%; /* Deixa o botão redondo */
+            padding: 20px; /* Aumenta o tamanho do círculo */
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3); /* Sombra mais forte */
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .cart-icon-container:hover {
+            transform: scale(1.15); /* Efeito de hover mais pronunciado */
+        }
+
+        .cart-icon-container .cart-img {
+            width: 50px;
+            height: 50px;
+            display: block; /* Ajuda no alinhamento */
+            filter: invert(1); /* Deixa o ícone preto em branco para contrastar com o fundo */
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;   /* Ajusta a posição da contagem */
+            right: -8px;  /* Ajusta a posição da contagem */
+            background-color: var(--destaque);
+            color: var(--preto);
+            border-radius: 50%;
+            padding: 5px 9px;   /* Contador maior */
+            font-size: 14px;    /* Fonte do contador maior */
+            font-weight: bold;
+            display: none; /* Começa escondido */
+        }
+
+        /* Controles de Quantidade no Modal */
+        .modal-cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .item-controls {
+            display: flex;
+            align-items: center;
+        }
+
+        .item-controls button {
+            background-color: #ddd; border: none; width: 25px; height: 25px; cursor: pointer; font-size: 16px; border-radius: 4px;
+        }
+        .item-controls input {
+            width: 40px; text-align: center; border: 1px solid #ccc; margin: 0 5px; padding: 5px; border-radius: 4px;
+        }
+        .remove-item-btn { background: none; border: none; color: #ff4d4d; font-size: 20px; cursor: pointer; margin-left: 15px; }
+
+        /* Modal de Pagamento */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.6);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 30px;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 600px;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .close-btn {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal h2 {
+            text-align: center;
+            color: var(--marrom);
+            margin-bottom: 25px;
+        }
+
+        /* Formulário no Modal */
+        #payment-form h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="tel"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .form-group input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .modal-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        /* Resumo do Pedido no Modal */
+        .order-summary {
+            background-color: #f9f5f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .order-summary h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#inicio" class="logo">
+                    <img src="logo.jpg" alt="Logo Adega Carleto" class="logo-img">
+                    <span>Adega Carleto</span>
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#cardapio">Cardápio</a></li>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </nav>
+                <div id="cart-icon" class="cart-icon-container">
+                    <img src="https://img.icons8.com/ios/50/shopping-cart--v1.png" alt="Carrinho de Compras" class="cart-img"/>
+                    <span id="cart-count" class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Os melhores copões!</h1>
+                <p>Experimente nossos  drinks exclusivos, preparados com ingredientes premium.</p>
+                <a href="#cardapio" class="btn">Ver Cardápio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="cardapio">
+        <div class="container">
+            <div class="section-title">
+                <h2> Drinks Especiais</h2>
+                <p>Todos servidos em copões de 500ml</p>
+            </div>
+            
+            <div class="drinks-grid">
+                <!-- Drink 1 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="capetao.jpeg" alt="Caipirinha Clássica">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Capetão</h3>
+                        <p>morango, vodka, leite condensado e whisk.</p>
+                        <div class="price">R$ 00,00</div>
+                        <button class="add-to-cart-btn" data-name="Capetão" data-price="24.90">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Drink 2 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="fuscaazul.jpeg" alt="Mojito">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Fusca Azul</h3>
+                        <p>corote azul, leite condensado e fanta uva.</p>
+                        <div class="price">R$ 00,00</div>
+                        <button class="add-to-cart-btn" data-name="Fusca Azul" data-price="26.90">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Drink 3 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="caipiroska.jpg" alt="Negroni">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Caipiroska</h3>
+                        <p>Limão e Vodka.</p>
+                        <div class="price">R$ 00,00</div>
+                        <button class="add-to-cart-btn" data-name="Caipiroska" data-price="29.90">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Drink 4 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="caipiornhavinha.jpeg" alt="Piña Colada">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Caipirinha de Vinho</h3>
+                        <p>Vinho suave, limão e um toque de açúcar.</p>
+                        <div class="price">R$ 00,00</div>
+                        <button class="add-to-cart-btn" data-name="Caipirinha de Vinho" data-price="27.90">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Drink 5 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="maracuja.avif" alt="Sex on the Beach">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Batida de Maracujá</h3>
+                        <p>Vodka, maracujá e leite condensado.</p>
+                        <div class="price">R$ 00,00</div>
+                        <button class="add-to-cart-btn" data-name="Batida de Maracujá" data-price="28.90">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Drink 6 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="espanhola.jpg" alt="Margarita">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Espanhola</h3>
+                        <p>leite condensado, maracujá e vinho.</p>
+                        <div class="price">R$ 00,00</div>
+                        <button class="add-to-cart-btn" data-name="Espanhola" data-price="27.90">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Drink 7 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="frozen.jpg" alt="Aperol Spritz">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Frozen</h3>
+                        <p>abacaxi, limão, leite condensado, ice de limão, limão e leite condensado.</p>
+                        <div class="price">R$ 00,00</div>
+                        <button class="add-to-cart-btn" data-name="Frozen" data-price="25.90">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Drink 8 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="frozenmorango.webp" alt="Cosmopolitan">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Frozen de morango</h3>
+                        <p>morango congelado, vodka e leite condensado e suco de limão.</p>
+                        <div class="price">R$ 00,00</div>
+                        <button class="add-to-cart-btn" data-name="Frozen de morango" data-price="28.90">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Drink 9 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="gelacranio.jpeg" alt="Moscow Mule">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Gela cranio</h3>
+                        <p>vodka, Askov e leite condensado.</p>
+                        <div class="price">R$ 00,00</div>
+                        <button class="add-to-cart-btn" data-name="Gela cranio" data-price="26.90">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Drink 10 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="gelacraniomorango.jpeg" alt="Old Fashioned">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Gela cranio de morango</h3>
+                        <p>energetico de Morango, maracujá e vodka</p>
+                        <div class="price">R$ 00,00</div>
+                        <button class="add-to-cart-btn" data-name="Gela cranio de morango" data-price="32.90">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Drink 11 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="ballena.webp" alt="Drink do Dia">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Gela cranio de Ballena</h3>
+                        <p>Ballena, energetico e fruta vermelhas.</p>
+                        <div class="price">R$ 00,00</div>
+                        <button class="add-to-cart-btn" data-name="Gela cranio de Ballena" data-price="22.90">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="sobre">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Sobre a Adega Carleto</h2>
+                    <p>Fundada em 2025, a Adega Carleto se tornou referência em drinks especiais servidos em copões de 500ml. Nossa missão é oferecer experiências únicas, combinando tradição e inovação em cada drink.</p>
+                    <p>Com uma seleção cuidadosa de 11 drinks especiais, utilizamos apenas ingredientes premium e técnicas de preparo que garantem sabor e qualidade em cada gole.</p>
+                    <p>Nosso delivery funciona de terça a domingo, das 18h às 2h, levando até você a verdadeira experiência de um bar premium no conforto da sua casa.</p>
+                </div>
+                <div class="about-img">
+                    <img src="logo.jpg" alt="Interior da Adega Carleto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Adega Carleto</h3>
+                    <p>Especialistas em drinks premium servidos em copões de 500ml. Delivery rápido e atendimento personalizado.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/adega_carletto?igsh=MjYycDNnMHQ3dzM3" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="Facebook (em breve)"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/5567996931568" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> (67) 99693-1568</li>
+                        <li><i class="fas fa-envelope"></i> contato@adegacarleto.com.br</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Rua xxx, xxx - Centro</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Horário</h3>
+                    <ul>
+                        <li>Terça a Quinta: 18h - 00h</li>
+                        <li>Sexta e Sábado: 18h - 2h</li>
+                        <li>Domingo: 18h - 00h</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#cardapio">Cardápio</a></li>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Thyesko Menão. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botões Flutuantes de Redes Sociais -->
+    <div>
+        <a href="https://wa.me/5567996931568" target="_blank" class="social-float whatsapp-float" title="Fale Conosco pelo WhatsApp">
+            <img width="35" height="35" src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="Ícone do WhatsApp"/>
+        </a>
+        <a href="https://www.instagram.com/adega_carletto?igsh=MjYycDNnMHQ3dzM3" target="_blank" class="social-float instagram-float" title="Siga-nos no Instagram">
+            <img width="35" height="35" src="https://img.icons8.com/color/48/instagram-new--v1.png" alt="Ícone do Instagram"/>
+        </a>
+    </div>
+
+    <!-- Modal de Pagamento -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Finalizar Pedido</h2>
+            
+            <div class="order-summary">
+                <h4>Resumo do Pedido</h4>
+                <div id="modal-cart-list" style="padding: 0;">
+                    <!-- Itens do carrinho serão inseridos aqui via JS -->
+                </div>
+                <p style="text-align: right; font-size: 18px; margin-top: 10px; border-top: 1px solid #ddd; padding-top: 10px;">
+                    Total: <strong id="modal-total-price">R$ 0.00</strong>
+                </p>
+            </div>
+
+            <form id="payment-form">
+                <h4>Informações de Entrega</h4>
+                <div class="form-group">
+                    <label for="fullname">Nome Completo</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+                <div class="form-group">
+                    <label for="street">Rua</label>
+                    <input type="text" id="street" name="street" placeholder="Ex: Rua das Flores" required>
+                </div>
+                <div class="form-group">
+                    <label for="house_number">Número</label>
+                    <input type="text" id="house_number" name="house_number" placeholder="Ex: 123" required>
+                </div>
+                <div class="form-group">
+                    <label for="neighborhood">Bairro</label>
+                    <input type="text" id="neighborhood" name="neighborhood" placeholder="Ex: Centro" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefone (WhatsApp)</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <h4>Forma de Pagamento</h4>
+                <div class="form-group">
+                    <label><input type="radio" name="payment" value="pix" checked> PIX</label>
+                    <label><input type="radio" name="payment" value="credit_card"> Cartão de Crédito</label>
+                    <label><input type="radio" name="payment" value="cash"> Dinheiro</label>
+                </div>
+
+                <!-- Campo de Troco (aparece condicionalmente) -->
+                <div class="form-group" id="change-for-group" style="display: none;">
+                    <label for="change_for">Precisa de troco para quanto? (Opcional)</label>
+                    <input type="text" id="change_for" name="change_for" placeholder="Ex: 100,00" inputmode="decimal">
+                    <p id="calculated-change-display" style="display: none; margin-top: 8px; color: #28a745; font-weight: bold;"></p>
+                </div>
+                
+                <button type="submit" class="btn modal-btn">Finalizar e Enviar Pedido</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Font Awesome para ícones -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = [];
+            let currentTotal = 0;
+            const paymentModal = document.getElementById('payment-modal');
+            const closeModalBtn = document.querySelector('.close-btn');
+            const paymentForm = document.getElementById('payment-form');
+            const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+            const cartIcon = document.getElementById('cart-icon');
+            const cartCount = document.getElementById('cart-count');
+            const modalCartList = document.getElementById('modal-cart-list');
+            const modalTotalPrice = document.getElementById('modal-total-price');
+            const paymentRadios = document.querySelectorAll('input[name="payment"]');
+            const changeForGroup = document.getElementById('change-for-group');
+            const changeForInput = document.getElementById('change_for');
+            const calculatedChangeDisplay = document.getElementById('calculated-change-display');
+
+            function closeModal() {
+                paymentModal.style.display = 'none';
+            }
+
+            function updateCartIcon() {
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCount.textContent = totalItems;
+                cartCount.style.display = totalItems > 0 ? 'block' : 'none';
+            }
+
+            function calculateAndShowChange() {
+                const changeForValueRaw = changeForInput.value.replace(',', '.').trim();
+                if (changeForValueRaw === '') {
+                    calculatedChangeDisplay.style.display = 'none';
+                    return;
+                }
+
+                const changeForValue = parseFloat(changeForValueRaw);
+                if (!isNaN(changeForValue) && changeForValue > currentTotal) {
+                    const change = changeForValue - currentTotal;
+                    calculatedChangeDisplay.textContent = `Seu troco será de R$ ${change.toFixed(2).replace('.', ',')}`;
+                    calculatedChangeDisplay.style.display = 'block';
+                } else {
+                    calculatedChangeDisplay.style.display = 'none';
+                }
+            }
+
+            function updateModalCart() {
+                let total = 0; // Reset total
+                modalCartList.innerHTML = '';
+                if (cart.length === 0) {
+                    modalCartList.innerHTML = '<p>Seu carrinho está vazio.</p>';
+                    modalTotalPrice.textContent = 'R$ 0.00';
+                    currentTotal = 0;
+                    calculateAndShowChange();
+                    return;
+                }
+                cart.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.classList.add('modal-cart-item');
+                    itemElement.innerHTML = `
+                        <span style="flex-grow: 1; max-width: 50%;">${item.name}</span>
+                        <div class="item-controls">
+                            <button class="quantity-btn" data-name="${item.name}" data-action="decrease">-</button>
+                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-name="${item.name}">
+                            <button class="quantity-btn" data-name="${item.name}" data-action="increase">+</button>
+                        </div>
+                        <button class="remove-item-btn" data-name="${item.name}">&times;</button>
+                    `;
+                    modalCartList.appendChild(itemElement);
+                    total += item.price * item.quantity;
+                });
+                currentTotal = total;
+                modalTotalPrice.textContent = `R$ ${currentTotal.toFixed(2)}`;
+                calculateAndShowChange();
+            }
+
+            function changeQuantity(name, action) {
+                const item = cart.find(i => i.name === name);
+                if (!item) return;
+
+                if (action === 'increase') {
+                    item.quantity++;
+                } else if (action === 'decrease') {
+                    item.quantity--;
+                }
+
+                if (item.quantity <= 0) {
+                    const itemIndex = cart.findIndex(i => i.name === name);
+                    cart.splice(itemIndex, 1);
+                }
+                updateCartIcon();
+                updateModalCart();
+            }
+
+            addToCartButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const name = this.getAttribute('data-name');
+                    const price = parseFloat(this.getAttribute('data-price'));
+                    const existingItem = cart.find(item => item.name === name);
+
+                    if (existingItem) {
+                        existingItem.quantity++;
+                    } else {
+                        cart.push({ name, price, quantity: 1 });
+                    }
+                    updateCartIcon();
+                    // Animação simples no ícone
+                    cartIcon.style.transform = 'scale(1.2)';
+                    setTimeout(() => { cartIcon.style.transform = 'scale(1)'; }, 200);
+                });
+            });
+
+            cartIcon.addEventListener('click', () => {
+                updateModalCart();
+                paymentModal.style.display = 'block';
+            });
+
+            paymentRadios.forEach(radio => {
+                radio.addEventListener('change', (event) => {
+                    if (event.target.value === 'cash') {
+                        changeForGroup.style.display = 'block';
+                    } else {
+                        changeForGroup.style.display = 'none';
+                        changeForInput.value = '';
+                        calculateAndShowChange();
+                    }
+                });
+            });
+
+            changeForInput.addEventListener('input', calculateAndShowChange);
+
+            closeModalBtn.addEventListener('click', closeModal);
+            window.addEventListener('click', e => { if (e.target == paymentModal) closeModal(); });
+
+            modalCartList.addEventListener('click', e => {
+                const name = e.target.dataset.name;
+                if (e.target.classList.contains('quantity-btn')) {
+                    changeQuantity(name, e.target.dataset.action);
+                }
+                if (e.target.classList.contains('remove-item-btn')) {
+                    changeQuantity(name, 'decrease'); // Simula diminuir até remover
+                }
+            });
+
+            modalCartList.addEventListener('change', e => {
+                if (e.target.classList.contains('quantity-input')) {
+                    const name = e.target.dataset.name;
+                    const newQuantity = parseInt(e.target.value);
+                    const item = cart.find(i => i.name === name);
+                    if (item) {
+                        item.quantity = newQuantity > 0 ? newQuantity : 1;
+                        updateCartIcon();
+                        updateModalCart();
+                    }
+                }
+            });
+
+            paymentForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                if (cart.length === 0) {
+                    alert("Seu carrinho está vazio!");
+                    return;
+                }
+                const clientName = document.getElementById('fullname').value;
+                const street = document.getElementById('street').value;
+                const houseNumber = document.getElementById('house_number').value;
+                const neighborhood = document.getElementById('neighborhood').value;
+                const phone = document.getElementById('phone').value;
+                const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+                let orderDetails = "Olá, Adega Carleto! Gostaria de fazer o seguinte pedido:\n\n";
+                let total = 0;
+                cart.forEach(item => {
+                    orderDetails += `${item.quantity}x ${item.name} - R$ ${(item.price * item.quantity).toFixed(2)}\n`;
+                    total += item.price * item.quantity;
+                });
+                orderDetails += `\n*Total do Pedido: R$ ${total.toFixed(2)}*\n`;
+                orderDetails += `\n*Dados para Entrega:*\n`;
+                orderDetails += `Nome: ${clientName}\n`;
+                orderDetails += `Endereço: ${street}, Nº ${houseNumber}, Bairro: ${neighborhood}\n`;
+                orderDetails += `Telefone: ${phone}\n`;
+                orderDetails += `Forma de Pagamento: ${paymentMethod}\n`;
+
+                if (paymentMethod === 'cash') {
+                    const changeForValue = document.getElementById('change_for').value;
+                    if (changeForValue.trim() !== '') {
+                        orderDetails += `Pagamento em dinheiro (troco para R$ ${changeForValue})\n`;
+                        const changeForNumber = parseFloat(changeForValue.replace(',', '.'));
+                        if (!isNaN(changeForNumber) && changeForNumber > total) {
+                            const calculatedChange = changeForNumber - total;
+                            orderDetails += `*Troco a ser devolvido: R$ ${calculatedChange.toFixed(2).replace('.', ',')}*\n`;
+                        }
+                    }
+                }
+
+                const yourWhatsAppNumber = '5567996931568'; // Número do Brasil com código de país
+                const whatsappUrl = `https://wa.me/${yourWhatsAppNumber}?text=${encodeURIComponent(orderDetails)}`;
+                window.open(whatsappUrl, '_blank');
+                paymentForm.reset();
+                cart.length = 0;
+                updateCartIcon();
+                updateModalCart();
+                closeModal();
+                alert('Seu pedido foi enviado! Você será redirecionado para o WhatsApp para confirmar.');
+            });
+        });
+    </script>
+</body>
+</html>
