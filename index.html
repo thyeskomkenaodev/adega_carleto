@@ -131,6 +131,22 @@
             font-size: 20px;
             margin-bottom: 30px;
         }
+
+        .adults-only-warning {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .adults-only-warning img { width: 24px; height: 24px; }
         
         /* Menu Section */
         .menu {
@@ -216,6 +232,7 @@
             font-size: 20px;
             font-weight: 700;
             color: var(--marrom);
+            margin: 15px 0;
         }
         
         .add-to-cart-btn {
@@ -229,10 +246,49 @@
             transition: background-color 0.3s;
         }
         
+        .drink-info .add-to-cart-btn {
+            width: 100%;
+        }
+
         .add-to-cart-btn:hover {
             background-color: var(--marrom-claro);
         }
         
+        /* Seletor de Tamanho */
+        .size-selector {
+            margin: 15px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .size-option {
+            display: flex;
+            align-items: center;
+        }
+
+        .size-option input[type="radio"] {
+            display: none; /* Esconde o radio button padrão */
+        }
+
+        .size-option label {
+            cursor: pointer;
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 600;
+            width: 100%;
+            text-align: center;
+        }
+
+        .size-option input[type="radio"]:checked + label {
+            background-color: var(--marrom-claro);
+            color: var(--branco);
+            border-color: var(--marrom-claro);
+        }
+
         /* About Section */
         .about {
             padding: 80px 0;
@@ -335,6 +391,22 @@
         
         .social-links a:hover {
             color: var(--destaque);
+        }
+        
+        .footer-warning {
+            text-align: center;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .footer-warning img {
+            width: 20px;
+            height: 20px;
         }
         
         .copyright {
@@ -580,6 +652,7 @@
                     <ul>
                         <li><a href="#inicio">Início</a></li>
                         <li><a href="#cardapio">Cardápio</a></li>
+                        <li><a href="#combos">Combo e Copão</a></li>
                         <li><a href="#sobre">Sobre Nós</a></li>
                         <li><a href="#contato">Contato</a></li>
                     </ul>
@@ -596,6 +669,10 @@
         <div class="container">
             <div class="hero-content">
                 <h1>Os melhores copões!</h1>
+                <div class="adults-only-warning">
+                    <img src="https://img.icons8.com/emoji/48/no-one-under-eighteen-emoji.png" alt="Ícone de 18+"/>
+                    <span>Produto destinado a maiores de 18 anos.</span>
+                </div>
                 <p>Experimente nossos  drinks exclusivos, preparados com ingredientes premium.</p>
                 <a href="#cardapio" class="btn">Ver Cardápio</a>
             </div>
@@ -607,7 +684,7 @@
         <div class="container">
             <div class="section-title">
                 <h2> Drinks Especiais</h2>
-                <p>Todos servidos em copões de 500ml</p>
+                <p>Escolha o tamanho do seu copão: 550ml ou 770ml</p>
             </div>
             
             <div class="drinks-grid">
@@ -619,8 +696,17 @@
                     <div class="drink-info">
                         <h3>Capetão</h3>
                         <p>morango, vodka, leite condensado e whisk.</p>
-                        <div class="price">R$ 00,00</div>
-                        <button class="add-to-cart-btn" data-name="Capetão" data-price="24.90">Adicionar ao Carrinho</button>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="capetao-550" name="size-capetao" value="550ml" data-price="27.00" checked>
+                                <label for="capetao-550">550ml - R$ 27,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="capetao-770" name="size-capetao" value="770ml" data-price="30.00">
+                                <label for="capetao-770">770ml - R$ 30,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
                     </div>
                 </div>
                 
@@ -632,8 +718,17 @@
                     <div class="drink-info">
                         <h3>Fusca Azul</h3>
                         <p>corote azul, leite condensado e fanta uva.</p>
-                        <div class="price">R$ 00,00</div>
-                        <button class="add-to-cart-btn" data-name="Fusca Azul" data-price="26.90">Adicionar ao Carrinho</button>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="fusca-azul-550" name="size-fusca-azul" value="550ml" data-price="24.00" checked>
+                                <label for="fusca-azul-550">550ml - R$ 24,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="fusca-azul-770" name="size-fusca-azul" value="770ml" data-price="27.00">
+                                <label for="fusca-azul-770">770ml - R$ 27,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
                     </div>
                 </div>
                 
@@ -645,8 +740,17 @@
                     <div class="drink-info">
                         <h3>Caipiroska</h3>
                         <p>Limão e Vodka.</p>
-                        <div class="price">R$ 00,00</div>
-                        <button class="add-to-cart-btn" data-name="Caipiroska" data-price="29.90">Adicionar ao Carrinho</button>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="caipiroska-550" name="size-caipiroska" value="550ml" data-price="20.00" checked>
+                                <label for="caipiroska-550">550ml - R$ 20,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="caipiroska-770" name="size-caipiroska" value="770ml" data-price="22.00">
+                                <label for="caipiroska-770">770ml - R$ 22,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
                     </div>
                 </div>
                 
@@ -658,8 +762,17 @@
                     <div class="drink-info">
                         <h3>Caipirinha de Vinho</h3>
                         <p>Vinho suave, limão e um toque de açúcar.</p>
-                        <div class="price">R$ 00,00</div>
-                        <button class="add-to-cart-btn" data-name="Caipirinha de Vinho" data-price="27.90">Adicionar ao Carrinho</button>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="caipirinha-vinho-550" name="size-caipirinha-vinho" value="550ml" data-price="25.00" checked>
+                                <label for="caipirinha-vinho-550">550ml - R$ 25,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="caipirinha-vinho-770" name="size-caipirinha-vinho" value="770ml" data-price="28.00">
+                                <label for="caipirinha-vinho-770">770ml - R$ 28,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
                     </div>
                 </div>
                 
@@ -669,14 +782,45 @@
                         <img src="maracuja.avif" alt="Sex on the Beach">
                     </div>
                     <div class="drink-info">
-                        <h3>Batida de Maracujá</h3>
+                        <h3>Batidinha de Maracujá</h3>
                         <p>Vodka, maracujá e leite condensado.</p>
-                        <div class="price">R$ 00,00</div>
-                        <button class="add-to-cart-btn" data-name="Batida de Maracujá" data-price="28.90">Adicionar ao Carrinho</button>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="batida-maracuja-550" name="size-batida-maracuja" value="550ml" data-price="24.00" checked>
+                                <label for="batida-maracuja-550">550ml - R$ 24,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="batida-maracuja-770" name="size-batida-maracuja" value="770ml" data-price="27.00">
+                                <label for="batida-maracuja-770">770ml - R$ 27,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
                     </div>
                 </div>
                 
-                <!-- Drink 6 -->
+                <!-- Drink 6 (Novo) -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="batidamorango.jpeg" alt="Batidinha de Morango">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Batidinha de Morango</h3>
+                        <p>Morango, vodka e leite condensado.</p>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="batida-morango-550" name="size-batida-morango" value="550ml" data-price="24.00" checked>
+                                <label for="batida-morango-550">550ml - R$ 24,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="batida-morango-770" name="size-batida-morango" value="770ml" data-price="27.00">
+                                <label for="batida-morango-770">770ml - R$ 27,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Drink 7 -->
                 <div class="drink-card">
                     <div class="drink-img">
                         <img src="espanhola.jpg" alt="Margarita">
@@ -684,12 +828,21 @@
                     <div class="drink-info">
                         <h3>Espanhola</h3>
                         <p>leite condensado, maracujá e vinho.</p>
-                        <div class="price">R$ 00,00</div>
-                        <button class="add-to-cart-btn" data-name="Espanhola" data-price="27.90">Adicionar ao Carrinho</button>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="espanhola-550" name="size-espanhola" value="550ml" data-price="26.00" checked>
+                                <label for="espanhola-550">550ml - R$ 26,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="espanhola-770" name="size-espanhola" value="770ml" data-price="29.00">
+                                <label for="espanhola-770">770ml - R$ 29,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
                     </div>
                 </div>
                 
-                <!-- Drink 7 -->
+                <!-- Drink 8 -->
                 <div class="drink-card">
                     <div class="drink-img">
                         <img src="frozen.jpg" alt="Aperol Spritz">
@@ -697,25 +850,87 @@
                     <div class="drink-info">
                         <h3>Frozen</h3>
                         <p>abacaxi, limão, leite condensado, ice de limão, limão e leite condensado.</p>
-                        <div class="price">R$ 00,00</div>
-                        <button class="add-to-cart-btn" data-name="Frozen" data-price="25.90">Adicionar ao Carrinho</button>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="frozen-550" name="size-frozen" value="550ml" data-price="25.90" checked>
+                                <label for="frozen-550">550ml - R$ 25,90</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="frozen-770" name="size-frozen" value="770ml" data-price="31.90">
+                                <label for="frozen-770">770ml - R$ 31,90</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
                     </div>
                 </div>
                 
-                <!-- Drink 8 -->
+                <!-- Drink 9 -->
                 <div class="drink-card">
                     <div class="drink-img">
                         <img src="frozenmorango.webp" alt="Cosmopolitan">
                     </div>
                     <div class="drink-info">
                         <h3>Frozen de morango</h3>
-                        <p>morango congelado, vodka e leite condensado e suco de limão.</p>
-                        <div class="price">R$ 00,00</div>
-                        <button class="add-to-cart-btn" data-name="Frozen de morango" data-price="28.90">Adicionar ao Carrinho</button>
+                        <p>morango ,  leite condensado e cachaça.</p>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="frozen-morango-550" name="size-frozen-morango" value="550ml" data-price="24.00" checked>
+                                <label for="frozen-morango-550">550ml - R$ 24,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="frozen-morango-770" name="size-frozen-morango" value="770ml" data-price="27.00">
+                                <label for="frozen-morango-770">770ml - R$ 27,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
                     </div>
                 </div>
                 
-                <!-- Drink 9 -->
+                <!-- Drink 10 (Novo) -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="frozenlimao.jpeg" alt="Frozen de Limão">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Frozen de Limão</h3>
+                        <p>Asko de limão, leite condensado e limão.</p>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="frozen-limao-550" name="size-frozen-limao" value="550ml" data-price="25.00" checked>
+                                <label for="frozen-limao-550">550ml - R$ 25,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="frozen-limao-770" name="size-frozen-limao" value="770ml" data-price="28.00">
+                                <label for="frozen-limao-770">770ml - R$ 28,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Drink 11 (Novo) -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="frozenabacaxi.jpeg" alt="Frozen de Abacaxi">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Frozen de Abacaxi</h3>
+                        <p>Abacaxi, leite condensado, cachaça e limão.</p>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="frozen-abacaxi-550" name="size-frozen-abacaxi" value="550ml" data-price="24.00" checked>
+                                <label for="frozen-abacaxi-550">550ml - R$ 24,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="frozen-abacaxi-770" name="size-frozen-abacaxi" value="770ml" data-price="27.00">
+                                <label for="frozen-abacaxi-770">770ml - R$ 27,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Drink 12 -->
                 <div class="drink-card">
                     <div class="drink-img">
                         <img src="gelacranio.jpeg" alt="Moscow Mule">
@@ -723,34 +938,197 @@
                     <div class="drink-info">
                         <h3>Gela cranio</h3>
                         <p>vodka, Askov e leite condensado.</p>
-                        <div class="price">R$ 00,00</div>
-                        <button class="add-to-cart-btn" data-name="Gela cranio" data-price="26.90">Adicionar ao Carrinho</button>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="gela-cranio-550" name="size-gela-cranio" value="550ml" data-price="20.00" checked>
+                                <label for="gela-cranio-550">550ml - R$ 20,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="gela-cranio-770" name="size-gela-cranio" value="770ml" data-price="23.00">
+                                <label for="gela-cranio-770">770ml - R$ 23,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
                     </div>
                 </div>
                 
-                <!-- Drink 10 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Combos Section -->
+    <section class="menu" id="combos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Combo e Copão</h2>
+                <p></p>
+            </div>
+            
+            <div class="drinks-grid">
+                <!-- Copão 1 -->
                 <div class="drink-card">
                     <div class="drink-img">
-                        <img src="gelacraniomorango.jpeg" alt="Old Fashioned">
+                        <img src="copogin.jpg" alt="Copão de Gin">
                     </div>
                     <div class="drink-info">
-                        <h3>Gela cranio de morango</h3>
-                        <p>energetico de Morango, maracujá e vodka</p>
-                        <div class="price">R$ 00,00</div>
-                        <button class="add-to-cart-btn" data-name="Gela cranio de morango" data-price="32.90">Adicionar ao Carrinho</button>
+                        <h3>Copão de Gin</h3>
+                        <p>Gin, água tônica e um toque de limão.</p>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="combo-casal-550" name="size-combo-casal" value="550ml" data-price="20.00" checked>
+                                <label for="combo-casal-550"> 550ml - R$ 20,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="combo-casal-770" name="size-combo-casal" value="770ml" data-price="24.00">
+                                <label for="combo-casal-770"> 770ml - R$ 24,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
                     </div>
                 </div>
                 
-                <!-- Drink 11 -->
+                <!-- Copão 2 -->
                 <div class="drink-card">
                     <div class="drink-img">
-                        <img src="ballena.webp" alt="Drink do Dia">
+                        <img src="copomaracuja.jpeg" alt="Copão Askov Maracujá">
                     </div>
                     <div class="drink-info">
-                        <h3>Gela cranio de Ballena</h3>
-                        <p>Ballena, energetico e fruta vermelhas.</p>
-                        <div class="price">R$ 00,00</div>
-                        <button class="add-to-cart-btn" data-name="Gela cranio de Ballena" data-price="22.90">Adicionar ao Carrinho</button>
+                        <h3>Copão Askov Maracujá</h3>
+                        <p>Askov de maracujá com energético.</p>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="combo-frozen-550" name="size-combo-frozen" value="550ml" data-price="18.00" checked>
+                                <label for="combo-frozen-550"> 550ml - R$ 18,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="combo-frozen-770" name="size-combo-frozen" value="770ml" data-price="20.00">
+                                <label for="combo-frozen-770"> 770ml - R$ 20,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Copão 3 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="copofrutas.jpeg" alt="Copão Askov Frutas Vermelhas">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Copão Askov Frutas vermelhas</h3>
+                        <p>Askov de frutas vermelhas com energético.</p>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="combo-classicos-550" name="size-combo-classicos" value="550ml" data-price="18.00" checked>
+                                <label for="combo-classicos-550"> 550ml - R$ 18,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="combo-classicos-770" name="size-combo-classicos" value="770ml" data-price="20.00">
+                                <label for="combo-classicos-770"> 770ml - R$ 20,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Copão 4 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="copolimao.jpeg" alt="Copão Askov Limão">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Copão Askov limão</h3>
+                        <p>Askov de limão com energético.</p>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="combo-festa-550" name="size-combo-festa" value="550ml" data-price="18.00" checked>
+                                <label for="combo-festa-550"> 550ml - R$ 18,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="combo-festa-770" name="size-combo-festa" value="770ml" data-price="20.00">
+                                <label for="combo-festa-770"> 770ml - R$ 20,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Copão 5 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="copococo.jpeg" alt="Copão de Coco">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Copão de coco</h3>
+                        <p>Batida de coco com vodka.</p>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="combo-batidas-550" name="size-combo-batidas" value="550ml" data-price="18.00" checked>
+                                <label for="combo-batidas-550"> 550ml - R$ 18,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="combo-batidas-770" name="size-combo-batidas" value="770ml" data-price="20.00">
+                                <label for="combo-batidas-770"> 770ml - R$ 20,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Copão 6 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="copocampari.jpeg" alt="Copão Campari">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Copão Campari</h3>
+                        <p>Campari com um toque de laranja.</p>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="combo-gela-550" name="size-combo-gela" value="550ml" data-price="20.00" checked>
+                                <label for="combo-gela-550"> 550ml - R$ 20,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="combo-gela-770" name="size-combo-gela" value="770ml" data-price="23.00">
+                                <label for="combo-gela-770"> 770ml - R$ 23,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+
+                <!-- Copão 7 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="copobeijo.jpeg" alt="Copão Beijo de Festa">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Copão Beijo de Festa</h3>
+                        <p>Gin, morango, beijinho e um toque especial.</p>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="beijo-festa-550" name="size-beijo-festa" value="550ml" data-price="20.00" checked>
+                                <label for="beijo-festa-550">550ml - R$ 20,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="beijo-festa-770" name="size-beijo-festa" value="770ml" data-price="24.00">
+                                <label for="beijo-festa-770">770ml - R$ 24,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+
+                <!-- Combo 1 -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="combotropical.jpeg" alt="Combo Tropical">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Combo Tropical</h3>
+                        <p>combo gelo, askov e energetico</p>
+                        <div class="price">R$ 42,00</div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
                     </div>
                 </div>
             </div>
@@ -763,9 +1141,9 @@
             <div class="about-content">
                 <div class="about-text">
                     <h2>Sobre a Adega Carleto</h2>
-                    <p>Fundada em 2025, a Adega Carleto se tornou referência em drinks especiais servidos em copões de 500ml. Nossa missão é oferecer experiências únicas, combinando tradição e inovação em cada drink.</p>
-                    <p>Com uma seleção cuidadosa de 11 drinks especiais, utilizamos apenas ingredientes premium e técnicas de preparo que garantem sabor e qualidade em cada gole.</p>
-                    <p>Nosso delivery funciona de terça a domingo, das 18h às 2h, levando até você a verdadeira experiência de um bar premium no conforto da sua casa.</p>
+                    <p>Fundada em 2025, a Adega Carleto se tornou referência em drinks especiais servidos em copões de 550ml e 770ml. Nossa missão é oferecer experiências únicas, combinando tradição e inovação em cada drink.</p>
+                    <p>Com uma seleção cuidadosa de  drinks especiais, utilizamos apenas ingredientes premium e técnicas de preparo que garantem sabor e qualidade em cada gole.</p>
+                    <p>Nosso delivery funciona de terça a domingo, das 18:30h às 2h BR, levando até você a verdadeira experiência de um bar premium no conforto da sua casa.</p>
                 </div>
                 <div class="about-img">
                     <img src="logo.jpg" alt="Interior da Adega Carleto">
@@ -780,29 +1158,30 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>Adega Carleto</h3>
-                    <p>Especialistas em drinks premium servidos em copões de 500ml. Delivery rápido e atendimento personalizado.</p>
+                    <p>Especialistas em drinks premium servidos em copões de 550ml e 770ml. Delivery rápido e atendimento personalizado.</p>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/adega_carletto?igsh=MjYycDNnMHQ3dzM3" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/adega_carletto?igsh=MjYycDNnMHQ3dzM3" target="_blank" title="Siga-nos no Instagram"><i class="fab fa-instagram"></i></a>
                         <a href="#" title="Facebook (em breve)"><i class="fab fa-facebook"></i></a>
-                        <a href="https://wa.me/5567996931568" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://wa.me/5567996714783" target="_blank" title="Fale Conosco pelo WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Contato</h3>
                     <ul>
-                        <li><i class="fas fa-phone"></i> (67) 99693-1568</li>
+                        <li><i class="fas fa-phone"></i> (67) 99671-4783</li>
                         <li><i class="fas fa-envelope"></i> contato@adegacarleto.com.br</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Rua xxx, xxx - Centro</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Rua Ranulpho Marques Leal, 302 -  Bairro- José Arara</li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Horário</h3>
                     <ul>
-                        <li>Terça a Quinta: 18h - 00h</li>
-                        <li>Sexta e Sábado: 18h - 2h</li>
-                        <li>Domingo: 18h - 00h</li>
+                        <li>Terça a Quinta: 18:30h - 2h</li>
+                        <li>Sexta e Sábado: 18:30h - 2h</li>
+                    
+                        <li>Domingo: 15:00h - 00h</li>
                     </ul>
                 </div>
                 
@@ -811,10 +1190,16 @@
                     <ul>
                         <li><a href="#inicio">Início</a></li>
                         <li><a href="#cardapio">Cardápio</a></li>
+                        <li><a href="#combos">Combo e Copão</a></li>
                         <li><a href="#sobre">Sobre Nós</a></li>
                         <li><a href="#contato">Contato</a></li>
                     </ul>
                 </div>
+            </div>
+            
+            <div class="footer-warning">
+                <img src="https://img.icons8.com/emoji/48/no-one-under-eighteen-emoji.png" alt="Ícone de 18+"/>
+                <span>Beba com moderação. Produto destinado a maiores de 18 anos.</span>
             </div>
             
             <div class="copyright">
@@ -825,7 +1210,7 @@
 
     <!-- Botões Flutuantes de Redes Sociais -->
     <div>
-        <a href="https://wa.me/5567996931568" target="_blank" class="social-float whatsapp-float" title="Fale Conosco pelo WhatsApp">
+        <a href="https://wa.me/5567996714783" target="_blank" class="social-float whatsapp-float" title="Fale Conosco pelo WhatsApp">
             <img width="35" height="35" src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="Ícone do WhatsApp"/>
         </a>
         <a href="https://www.instagram.com/adega_carletto?igsh=MjYycDNnMHQ3dzM3" target="_blank" class="social-float instagram-float" title="Siga-nos no Instagram">
@@ -914,6 +1299,15 @@
                 paymentModal.style.display = 'none';
             }
 
+            function removeItemFromCart(itemName) {
+                const itemIndex = cart.findIndex(i => i.name === itemName);
+                if (itemIndex > -1) {
+                    cart.splice(itemIndex, 1);
+                }
+                updateCartIcon();
+                updateModalCart();
+            }
+
             function updateCartIcon() {
                 const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
                 cartCount.textContent = totalItems;
@@ -987,14 +1381,36 @@
 
             addToCartButtons.forEach(btn => {
                 btn.addEventListener('click', function() {
-                    const name = this.getAttribute('data-name');
-                    const price = parseFloat(this.getAttribute('data-price'));
-                    const existingItem = cart.find(item => item.name === name);
+                    const drinkCard = this.closest('.drink-card');
+                    const name = drinkCard.querySelector('h3').textContent;
+                    const sizeSelector = drinkCard.querySelector('.size-selector');
+
+                    let itemName, price;
+
+                    if (sizeSelector) {
+                        // Lógica para itens com seleção de tamanho
+                        const selectedOption = sizeSelector.querySelector('input[type="radio"]:checked');
+                        if (!selectedOption) {
+                            alert('Por favor, selecione um tamanho.');
+                            return;
+                        }
+                        const size = selectedOption.value;
+                        price = parseFloat(selectedOption.dataset.price);
+                        itemName = `${name} (${size})`;
+                    } else {
+                        // Lógica para itens com preço fixo
+                        const priceElement = drinkCard.querySelector('.price');
+                        if (!priceElement) return; // Não deve acontecer
+                        price = parseFloat(priceElement.textContent.replace('R$', '').replace(',', '.').trim());
+                        itemName = name;
+                    }
+
+                    const existingItem = cart.find(item => item.name === itemName);
 
                     if (existingItem) {
                         existingItem.quantity++;
                     } else {
-                        cart.push({ name, price, quantity: 1 });
+                        cart.push({ name: itemName, price, quantity: 1 });
                     }
                     updateCartIcon();
                     // Animação simples no ícone
@@ -1031,7 +1447,7 @@
                     changeQuantity(name, e.target.dataset.action);
                 }
                 if (e.target.classList.contains('remove-item-btn')) {
-                    changeQuantity(name, 'decrease'); // Simula diminuir até remover
+                    removeItemFromCart(name);
                 }
             });
 
@@ -1085,7 +1501,7 @@
                     }
                 }
 
-                const yourWhatsAppNumber = '5567996931568'; // Número do Brasil com código de país
+                const yourWhatsAppNumber = '5567996714783'; // Número do Brasil com código de país
                 const whatsappUrl = `https://wa.me/${yourWhatsAppNumber}?text=${encodeURIComponent(orderDetails)}`;
                 window.open(whatsappUrl, '_blank');
                 paymentForm.reset();
