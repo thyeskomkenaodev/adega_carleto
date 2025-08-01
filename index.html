@@ -437,6 +437,26 @@
             .about-content {
                 flex-direction: column;
             }
+
+            /* Ajustes no ícone do carrinho para mobile */
+            .cart-icon-container {
+                top: 130px; /* Posição abaixo do header mobile */
+                right: 20px;
+                padding: 12px; /* Círculo menor */
+                box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            }
+
+            .cart-icon-container .cart-img {
+                width: 30px; /* Ícone menor */
+                height: 30px;
+            }
+
+            .cart-count {
+                top: -5px;
+                right: -5px;
+                padding: 3px 7px; /* Contador menor */
+                font-size: 12px;
+            }
         }
 
         /* Botões Flutuantes de Redes Sociais */
@@ -713,7 +733,7 @@
                 <!-- Drink 2 -->
                 <div class="drink-card">
                     <div class="drink-img">
-                        <img src="fuscaazul.jpeg" alt="Mojito">
+                        <img src="fuscaazul2.jpg " alt="Mojito">
                     </div>
                     <div class="drink-info">
                         <h3>Fusca Azul</h3>
@@ -735,7 +755,7 @@
                 <!-- Drink 3 -->
                 <div class="drink-card">
                     <div class="drink-img">
-                        <img src="caipiroska.jpg" alt="Negroni">
+                        <img src="caipiroska.jpg" alt="Caipiroska">
                     </div>
                     <div class="drink-info">
                         <h3>Caipiroska</h3>
@@ -748,6 +768,28 @@
                             <div class="size-option">
                                 <input type="radio" id="caipiroska-770" name="size-caipiroska" value="770ml" data-price="22.00">
                                 <label for="caipiroska-770">770ml - R$ 22,00</label>
+                            </div>
+                        </div>
+                        <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
+                    </div>
+                </div>
+                
+                <!-- Caipirinha de Limão -->
+                <div class="drink-card">
+                    <div class="drink-img">
+                        <img src="caipirinhalimao2.jpg" alt="Caipirinha de Limão">
+                    </div>
+                    <div class="drink-info">
+                        <h3>Caipirinha de Limão</h3>
+                        <p>Limão, cachaça, açúcar e gelo.</p>
+                        <div class="size-selector">
+                            <div class="size-option">
+                                <input type="radio" id="caipirinha-limao-550" name="size-caipirinha-limao" value="550ml" data-price="20.00" checked>
+                                <label for="caipirinha-limao-550">550ml - R$ 20,00</label>
+                            </div>
+                            <div class="size-option">
+                                <input type="radio" id="caipirinha-limao-770" name="size-caipirinha-limao" value="770ml" data-price="22.00">
+                                <label for="caipirinha-limao-770">770ml - R$ 22,00</label>
                             </div>
                         </div>
                         <button class="add-to-cart-btn">Adicionar ao Carrinho</button>
@@ -823,7 +865,7 @@
                 <!-- Drink 7 -->
                 <div class="drink-card">
                     <div class="drink-img">
-                        <img src="espanhola.jpg" alt="Margarita">
+                        <img src="espanhola2.jpg" alt="Margarita">
                     </div>
                     <div class="drink-info">
                         <h3>Espanhola</h3>
